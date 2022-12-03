@@ -10,6 +10,10 @@ async function main() {
 main().then(() => console.log("Connected to db"));
 main().catch((err) => console.log("AN ERROR!", err));
 
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 app.get("/bitburger", (req, res) => {
   res.render("bitburger");
 });
