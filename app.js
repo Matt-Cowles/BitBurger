@@ -9,4 +9,8 @@ async function main() {
 main().then(() => console.log("Connected to db"));
 main().catch((err) => console.log("AN ERROR!", err));
 
+app.get("/bitburger", (req, res) => {
+  res.send("it worked");
+});
+
 app.listen(3000, () => console.log("listening on port 3000"));
