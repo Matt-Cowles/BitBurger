@@ -19,8 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+  res.render("bitburger/home");
+});
+
 app.get("/bitburger", (req, res) => {
-  res.render("bitburger");
+  res.render("bitburger/menu");
 });
 
 app.listen(3000, () => console.log("listening on port 3000"));
