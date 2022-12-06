@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
+const Menu = require("./models/menu");
+
 async function main() {
   await mongoose.connect("mongodb://localhost:27017/bit-burger");
 }
