@@ -8,13 +8,19 @@ const menuSchema = new Schema({
     enum: ["Burger", "Pizza", "Fries", "Drinks", "Dessert"],
     required: true,
   },
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
     default: url,
   },
   desc: String,
-  price: Number,
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Menu", menuSchema);
