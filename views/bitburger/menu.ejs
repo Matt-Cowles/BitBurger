@@ -3,4 +3,23 @@
 <link rel="stylesheet" href="/stylesheets/menu.css" />
 
 <div class="menu-title card text-center m-auto mt-5 mb-3 fs-1 pt-5 pb-5">Our Menu</div>
-<div class="container"></div>
+<div class="container">
+  <% let itemCounter = 1 %> <% for (let item of menuItems) { %> <% if (item.category === "Burger") { %>
+  <div class="menu-subsection"><%=item.category%>! <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %></div>
+
+  <!-- If the item category is listed as dessert, display those items -->
+
+  <% if (item.category === "Pizza") { %> <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+
+  <!-- If the item category is listed as dessert, display those items -->
+
+  <% if (item.category === "Fries") { %> <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+
+  <!-- If the item category is listed as dessert, display those items -->
+
+  <% if (item.category === "Drinks") { %> <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+
+  <!-- If the item category is listed as dessert, display those items -->
+
+  <% if (item.category === "Dessert") { %> <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% }} %>
+</div>

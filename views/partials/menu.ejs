@@ -1,0 +1,25 @@
+<div class="container d-inline">
+  <div class="card w-25">
+    <table class="table">
+      <tbody>
+        <thead>
+          <tr>
+            <th scope="col" colspan="3" class="text-center"><%=item.name%></th>
+          </tr>
+        </thead>
+        <tr>
+          <td colspan="3" class="align-center text-center pt-3 pb-3"><img src="<%= item.image %>" class="item-image w-75" /></td>
+        </tr>
+        <tr>
+          <td class="pt-3 pb-3">
+            <button class="btn btn-outline-danger offset-3 w-75 fw-semibold" id="quantityBtn">-</button>
+          </td>
+          <td class="text-center align-center pt-3">$<%= item.price %></td>
+          <td class="pt-3 pb-3">
+            <button class="btn btn-outline-success w-75 fw-semibold" id="quantityBtn">+</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
