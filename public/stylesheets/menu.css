@@ -4,7 +4,8 @@
 }
 
 .item-image {
-  max-height: 500px;
+  max-height: 250px;
+  min-height: 250px;
 }
 
 #quantityBtn {

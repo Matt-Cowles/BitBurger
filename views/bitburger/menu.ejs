@@ -4,63 +4,45 @@
 
 <div class="menu-title card text-center m-auto mt-5 mb-3 fs-1 pt-5 pb-5">Our Menu</div>
 <div class="container">
+  <% let itemCounter = 1 %>
 
-    <!-- Burger section of menu -->
-
-  <div class="burger-container">
-    <div class="text-center align-center">
-        Burgers!
-    </div>
-    <% let itemCounter = 1 %>
-
-    <!-- iterates through the list of burgers and performs action for each item -->
+  <!-- Burger section of menu -->
+  <div class="text-center align-center mt-5 mb-3">Burgers!</div>
+  <div class="food-container d-flex justify-content-start">
     <% for (let item of burgerList) { %>
-      <!-- Use a partial to create the category section of menu -->
-      <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
-    </div>
+    <!-- Use a partial to create the category section of menu -->
+    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+  </div>
 
-<!-- Pizza section of menu -->
-  <div class="pizza-container">
-    <div class="text-center align-center">
-        Pizza!
-    </div>
+  <!-- Pizza section of menu -->
+  <div class="text-center align-center mt-5 mb-3">Pizza!</div>
+  <div class="food-container d-flex justify-content-start">
     <% for (let item of pizzaList) { %>
-      <!-- Use a partial to create the category section of menu -->
-      <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
-    </div>
+    <!-- Use a partial to create the category section of menu -->
+    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+  </div>
 
-<!-- Fries section of menu -->
-  <div class="fries-container">
-    <div class="text-center align-center">
-        Fries!
-    </div>
+  <!-- Fries section of menu -->
+  <div class="text-center align-center mt-5 mb-3">Fries!</div>
+  <div class="food-container d-flex justify-content-start">
     <% for (let item of friesList) { %>
-      <!-- Use a partial to create the category section of menu -->
-      <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
-    </div>
+    <!-- Use a partial to create the category section of menu -->
+    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+  </div>
 
-<!-- Drinks section of menu -->
-  <div class="drinks-container">
-    <div class="text-center align-center">
-        Drinks!
-    </div>
+  <!-- Drinks section of menu -->
+  <div class="text-center align-center mt-5 mb-3">Drinks!</div>
+  <div class="food-container d-flex justify-content-start">
     <% for (let item of drinksList) { %>
-      <!-- Use a partial to create the category section of menu -->
-      <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
-    </div>
+    <!-- Use a partial to create the category section of menu -->
+    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+  </div>
 
-<!-- Dessert section of menu -->
-  <div class="dessert-container">
-    <div class="text-center align-center">
-        Dessert!
-    </div>
+  <!-- Dessert section of menu -->
+  <div class="text-center align-center mt-5 mb-3">Dessert!</div>
+  <div class="food-container d-flex justify-content-start">
     <% for (let item of dessertList) { %>
-      <!-- Use a partial to create the category section of menu -->
-      <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
-    </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Use a partial to create the category section of menu -->
+    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
   </div>
 </div>
