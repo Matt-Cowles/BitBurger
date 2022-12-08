@@ -25,8 +25,40 @@ app.get("/", (req, res) => {
   res.render("bitburger/home");
 });
 
-app.get("/bitburger", (req, res) => {
-  res.render("bitburger/menu");
+app.get("/bitburger", async (req, res) => {
+  const categories = ["Burger", "Pizza", "Fries", "Drinks", "Dessert"];
+  const burgerList = [];
+  const pizzaList = [];
+  const friesList = [];
+  const drinksList = [];
+  const dessertList = [];
+
+  const menuItems = await Menu.find({});
+
+  const filteredItems = menuItems.filter(function (item) {
+    if (item.category === "Burger") {
+      burgerList.push(item);
+    }
+    if (item.category === "Pizza") {
+      pizzaList.push(item);
+    }
+    if (item.category === "Fries") {
+      friesList.push(item);
+    }
+    if (item.category === "Drinks") {
+      drinksList.push(item);
+    }
+    if (item.category === "Dessert") {
+      dessertList.push(item);
+    }
+  });
+
+  //   const mappedItems = menuItems.map(function (item) {
+  //     console.log(item);
+  //   });
+
+  console.log("The burger list is:", burgerList);
+  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList });
 });
 
 app.listen(3000, () => console.log("listening on port 3000"));
