@@ -5,7 +5,7 @@ const url = "https://imgs.search.brave.com/y1zBCNoZQA7d5ftqOjEItl0aJ179z5_HD8TBb
 const menuSchema = new Schema({
   category: {
     type: String,
-    enum: ["Burger", "Pizza", "Fries", "Drinks", "Dessert"],
+    enum: ["burger", "pizza", "fries", "drink", "dessert"],
     required: true,
   },
   name: {

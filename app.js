@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bitburger", async (req, res) => {
-  const categories = ["Burger", "Pizza", "Fries", "Drinks", "Dessert"];
   const burgerList = [];
   const pizzaList = [];
   const friesList = [];
@@ -36,19 +35,19 @@ app.get("/bitburger", async (req, res) => {
   const menuItems = await Menu.find({});
 
   const filteredItems = menuItems.filter(function (item) {
-    if (item.category === "Burger") {
+    if (item.category === "burger") {
       burgerList.push(item);
     }
-    if (item.category === "Pizza") {
+    if (item.category === "pizza") {
       pizzaList.push(item);
     }
-    if (item.category === "Fries") {
+    if (item.category === "fries") {
       friesList.push(item);
     }
-    if (item.category === "Drinks") {
+    if (item.category === "drink") {
       drinksList.push(item);
     }
-    if (item.category === "Dessert") {
+    if (item.category === "dessert") {
       dessertList.push(item);
     }
   });
