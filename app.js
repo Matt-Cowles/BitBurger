@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 const Menu = require("./models/menu");
 
@@ -22,8 +23,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
-const sessionOptions = { secret: "thisisabadsecret", resave: false, saveUninitialized: true };
+const sessionOptions = {
+  secret: "thisisabadsecret",
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore((mongooseConnection = mongoose.connection)),
+};
+
 app.use(session(sessionOptions));
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+});
 
 app.get("/", (req, res) => {
   res.render("bitburger/home");
