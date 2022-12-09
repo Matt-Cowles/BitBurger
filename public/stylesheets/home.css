@@ -1,8 +1,8 @@
 .navbar {
-  background-color: white;
+  background-color: transparent;
 }
 
-.home {
+body {
   background-image: url("https://images7.alphacoders.com/817/817988.jpg");
   min-width: 100%;
   min-height: 100vh;
@@ -15,7 +15,7 @@
 }
 
 .position-absolute {
-  top: 15%;
+  margin-top: 5rem;
   left: 10%;
 }
 

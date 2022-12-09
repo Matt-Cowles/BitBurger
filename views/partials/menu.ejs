@@ -1,9 +1,9 @@
-<div class="card w-25 ms-3 me-3">
-  <table class="table">
+<div class="card w-25 ms-5 me-3 shadow-lg">
+  <table class="">
     <tbody>
       <thead>
         <tr>
-          <th scope="col" colspan="3" class="text-center"><%=item.name%></th>
+          <th scope="col" colspan="3" class="text-center pt-3 pb-3" id="item-name"><%=item.name%></th>
         </tr>
       </thead>
       <tr>
@@ -13,9 +13,11 @@
         <td class="pt-3 pb-3">
           <button class="btn btn-outline-danger offset-3 w-75 fw-semibold" id="quantityBtn">-</button>
         </td>
-        <td class="text-center align-center pt-3">$<%= item.price %></td>
+        <td class="text-center align-center">$<%= item.price %></td>
         <td class="pt-3 pb-3">
-          <button class="btn btn-outline-success w-75 fw-semibold" id="quantityBtn">+</button>
+          <form action="/<%=item._id%>/cart?_method=PUT" method="POST">
+            <button class="btn btn-success w-75 fw-semibold" id="quantityBtn">+</button>
+          </form>
         </td>
       </tr>
     </tbody>

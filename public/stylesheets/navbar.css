@@ -1,3 +1,10 @@
+.navbar-brand {
+  color: white;
+}
+.nav-link {
+  color: white;
+}
+
 .badge:after {
   content: attr(value);
   font-size: 12px;
