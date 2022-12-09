@@ -8,6 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 const Menu = require("./models/menu");
+const Cart = require("./models/cart");
 
 async function main() {
   await mongoose.connect("mongodb://localhost:27017/bit-burger");
@@ -34,6 +35,7 @@ app.use(session(sessionOptions));
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  next();
 });
 
 app.get("/", (req, res) => {
@@ -75,16 +77,12 @@ app.get("/bitburger", async (req, res) => {
 });
 
 app.put("/:id/cart", async (req, res) => {
-  const shoppingCart = [];
-
   const item = await Menu.findById(req.params.id);
-  console.log(req.params);
-  console.log(item);
-  console.log(item.name);
-  shoppingCart.push(item);
-  console.log("Shopping cart contains:", shoppingCart);
 
-  //   console.log(req.sessionID);
+  Cart.save(item);
+  req.session.cart = Cart.getCart();
+  console.log(req.session.cart);
+
   res.redirect("/bitburger");
 });
 
