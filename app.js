@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo");
 
 const Menu = require("./models/menu");
 const Cart = require("./models/cart");
+const { createReadStream } = require("fs");
 
 async function main() {
   await mongoose.connect("mongodb://localhost:27017/bit-burger");
@@ -51,6 +52,10 @@ app.get("/bitburger", async (req, res) => {
 
   const menuItems = await Menu.find({});
 
+  const cart = Cart.getCart();
+  console.log("from the menu screen!", cart);
+  // console.log(menuItems);
+
   const filteredItems = menuItems.filter(function (item) {
     if (item.category === "burger") {
       burgerList.push(item);
@@ -73,15 +78,26 @@ app.get("/bitburger", async (req, res) => {
   //     console.log(item);
   //   });
 
-  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList });
+  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart });
 });
 
-app.put("/:id/cart", async (req, res) => {
+app.put("/:id/add-cart", async (req, res) => {
   const item = await Menu.findById(req.params.id);
 
-  Cart.save(item);
+  Cart.add(item);
   req.session.cart = Cart.getCart();
-  console.log(req.session.cart);
+
+  res.redirect("/bitburger");
+});
+
+app.put("/:id/remove-cart", async (req, res) => {
+  const item = await Menu.findById(req.params.id);
+
+  Cart.remove(item);
+  req.session.cart = Cart.getCart();
+
+  // Cart.save(item);
+  // req.session.cart = Cart.getCart();
 
   res.redirect("/bitburger");
 });
