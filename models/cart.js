@@ -38,6 +38,10 @@ module.exports = class Cart {
       cart.totalPrice -= item.price;
       cart.items.splice(itemIndex, 1);
     }
+
+    if (cart.totalPrice < 0) {
+      cart.totalPrice = 0;
+    }
   }
 
   //   Get a list of the cart
