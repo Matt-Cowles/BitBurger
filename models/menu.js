@@ -12,14 +12,15 @@ const menuSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    default: url,
-  },
+  image: String,
   desc: String,
   price: {
     type: Number,
     required: true,
+  },
+  qty: {
+    type: Number,
+    default: 0,
   },
 });
 
