@@ -1,9 +1,10 @@
-<% layout('layouts/boilerplate') %>
+<%- include('../partials/menuNav', { cart }) %> <% layout('layouts/boilerplate') %>
 
 <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Lemon&family=Vollkorn:wght@900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/stylesheets/menu.css" />
 
 <div class="menu-title card text-center m-auto mt-5 mb-3 fs-1 pt-5 pb-5">Our Menu</div>
+
 <div class="container">
   <% let itemCounter = 1 %>
 
