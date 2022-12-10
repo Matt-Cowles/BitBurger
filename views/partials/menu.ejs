@@ -11,11 +11,13 @@
       </tr>
       <tr>
         <td class="pt-3 pb-3">
-          <button class="btn btn-outline-danger offset-3 w-75 fw-semibold" id="quantityBtn">-</button>
+          <form action="/<%=item._id%>/remove-cart?_method=PUT" method="POST">
+            <button class="btn btn-outline-danger offset-3 w-75 fw-semibold" id="quantityBtn">-</button>
+          </form>
         </td>
         <td class="text-center align-center">$<%= item.price %></td>
         <td class="pt-3 pb-3">
-          <form action="/<%=item._id%>/cart?_method=PUT" method="POST">
+          <form action="/<%=item._id%>/add-cart?_method=PUT" method="POST">
             <button class="btn btn-success w-75 fw-semibold" id="quantityBtn">+</button>
           </form>
         </td>
