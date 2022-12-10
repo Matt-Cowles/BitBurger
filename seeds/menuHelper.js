@@ -64,8 +64,8 @@ module.exports = [
   },
   {
     category: "dessert",
-    name: "Chocolate Sundae",
-    iamge: "https://www.pinclipart.com/picdir/big/88-888517_chocolate-ice-cream-sundae-colorful-transprent-ice-cream.png",
+    name: "Sundae",
+    image: "https://www.pinclipart.com/picdir/big/545-5457591_transparent-ice-cream-clipart-ice-cream-sundae-clipart.png",
     desc: "This is a chocoalte sundae",
     price: 5.99,
   },
