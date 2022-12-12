@@ -7,8 +7,16 @@
         </tr>
       </thead>
       <tr>
-        <td colspan="3" class="align-center text-center pt-3 pb-3"><img src="<%= item.image %>" class="item-image w-75" /></td>
+        <td colspan="3" class="align-center text-center pt-3 pb-3" id="img-cell">
+          <img src="<%= item.image %>" class="item-image w-75" />
+          <% if(cart) { %>
+          <!-- Searches cart list for this item -->
+          <%itemFilter = cart.items.filter((i) => i.id === item.id)%> <%for (let item of itemFilter) { %>
+          <div class="item-qty">{ <%=item.qty%> }</div>
+          <% }} %>
+        </td>
       </tr>
+
       <tr>
         <td class="pt-3 pb-3">
           <form action="/<%=item._id%>/remove-cart?_method=PUT" method="POST">
