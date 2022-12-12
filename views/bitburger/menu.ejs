@@ -48,3 +48,15 @@
     <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 </div>
+
+<!-- Reload to the same scroll position on the page when refreshed -->
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const scrollpos = localStorage.getItem("scrollpos");
+    if (scrollpos) window.scrollTo(0, scrollpos);
+  });
+
+  window.onbeforeunload = function (e) {
+    localStorage.setItem("scrollpos", window.scrollY);
+  };
+</script>
