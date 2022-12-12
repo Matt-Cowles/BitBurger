@@ -1,8 +1,9 @@
 .modal {
-  margin-top: 30%;
+  margin-top: 1.5rem;
+  margin-bottom: 5%;
 }
 
-.modal-backdrop {
+.offcanvas {
   z-index: 0 !important;
 }
 

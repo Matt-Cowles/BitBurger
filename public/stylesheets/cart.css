@@ -1,0 +1,20 @@
+.item-row {
+  min-height: 50px;
+}
+
+.cart-image {
+  max-width: 50px;
+}
+
+#multiply-qty {
+  background-color: #343b3b;
+  border-radius: 50px;
+  color: #fdb050;
+  max-width: 30px;
+  padding: 10px;
+  opacity: 0.7;
+}
+
+#multiply-qty:hover {
+  opacity: 1;
+}
