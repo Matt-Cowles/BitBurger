@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/stylesheets/cart.css" />
+
+<!-- Button trigger modal -->
+<button class="bg-transparent" type="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <i class="btn fa badge fa-lg" value="<%=cart ? cart.totalQty : 0%>">&#xf07a;</i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm Your Order</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"><%-include('./confirmOrder')%></div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-secondary ms-5" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success me-5" data-bs-target="#confirmPayment" data-bs-toggle="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmPayment" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Confirm Your Payment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Hide this modal and show the first with the button below.</div>
+      <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-secondary ms-5" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Go Back</button>
+        <button type="button" class="btn btn-success me-5">Place Order</button>
+      </div>
+    </div>
+  </div>
+</div>
