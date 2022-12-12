@@ -27,8 +27,13 @@ app.use(express.static(path.join(__dirname, "public")));
 const sessionOptions = {
   secret: "thisisabadsecret",
   resave: false,
-  saveUninitialized: true,
-  store: new MongoStore((mongooseConnection = mongoose.connection)),
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: "mongodb://localhost:27017/bit-burger",
+    // autoRemove: "interval",
+    // autoRemoveInterval: 1, // In minutes. Default
+  }),
+  cookie: { path: "/", httpOnly: true, maxAge: 1800000 },
 };
 
 app.use(session(sessionOptions));
@@ -73,7 +78,12 @@ app.get("/bitburger", async (req, res) => {
   //     console.log(item);
   //   });
 
-  req.session.cart = Cart.getCart();
+  if (req.session.cart) {
+    req.session.cart = Cart.getCart();
+  } else {
+    Cart.clearCart();
+    req.session.cart = null;
+  }
   const cart = req.session.cart;
   console.log(cart);
 
