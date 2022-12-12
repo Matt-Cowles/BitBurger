@@ -3,7 +3,7 @@
   margin-bottom: 5%;
 }
 
-.offcanvas {
+.modal-backdrop {
   z-index: 0 !important;
 }
 
