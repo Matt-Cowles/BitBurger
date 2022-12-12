@@ -1,7 +1,7 @@
 let cart = null;
 
 module.exports = class Cart {
-  // Save an item to the cart
+  // Add an item to the cart
   static add(item) {
     if (cart === null) {
       cart = { items: [], totalPrice: 0, totalQty: 0 };
@@ -21,6 +21,10 @@ module.exports = class Cart {
 
   //   Remove item from cart
   static remove(item) {
+    if (!cart) {
+      return null;
+    }
+
     const itemIndex = cart.items.findIndex((i) => i.id === item.id);
     const existingItem = cart.items[itemIndex];
 
@@ -47,5 +51,15 @@ module.exports = class Cart {
   //   Get a list of the cart
   static getCart() {
     return cart;
+  }
+
+  static clearCart() {
+    if (!cart) {
+      return null;
+    } else {
+      cart.items.splice(0, cart.items.length);
+      cart.totalQty = 0;
+      cart.totalPrice = 0;
+    }
   }
 };

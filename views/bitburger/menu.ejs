@@ -13,7 +13,7 @@
   <div class="food-container d-flex justify-content-start">
     <% for (let item of burgerList) { %>
     <!-- Use a partial to create the category section of menu -->
-    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+    <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 
   <!-- Pizza section of menu -->
@@ -21,7 +21,7 @@
   <div class="food-container d-flex justify-content-start">
     <% for (let item of pizzaList) { %>
     <!-- Use a partial to create the category section of menu -->
-    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+    <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 
   <!-- Fries section of menu -->
@@ -29,7 +29,7 @@
   <div class="food-container d-flex justify-content-start">
     <% for (let item of friesList) { %>
     <!-- Use a partial to create the category section of menu -->
-    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+    <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 
   <!-- Drinks section of menu -->
@@ -37,7 +37,7 @@
   <div class="food-container d-flex justify-content-start">
     <% for (let item of drinksList) { %>
     <!-- Use a partial to create the category section of menu -->
-    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+    <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 
   <!-- Dessert section of menu -->
@@ -45,6 +45,6 @@
   <div class="food-container d-flex justify-content-start">
     <% for (let item of dessertList) { %>
     <!-- Use a partial to create the category section of menu -->
-    <%- include('../partials/menu', { item } )%> <% itemCounter++ %> <% } %>
+    <%- include('../partials/menu', { item, cart } )%> <% itemCounter++ %> <% } %>
   </div>
 </div>
