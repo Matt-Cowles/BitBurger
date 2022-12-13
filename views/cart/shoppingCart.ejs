@@ -13,7 +13,7 @@
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm Your Order</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body"><%-include('./confirmOrder')%></div>
+      <div class="modal-body"><%-include('./reviewOrder')%></div>
       <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-outline-secondary ms-5" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success me-5" data-bs-target="#confirmPayment" data-bs-toggle="modal">Confirm</button>
@@ -25,14 +25,42 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Confirm Your Payment</h1>
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Place Your Order</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">Hide this modal and show the first with the button below.</div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="fs-5 fw-bolder text-center mb-3">This will send an actual email!</div>
+          <div class="text-center mb-3">The email will be sent from BitBurgerFoods@gmail.com and powered by smtpjs and elastic emails.</div>
+          <div class="text-center">It may appear in your spam folder and can ocassionally take a couple minutes to send</div>
+        </div>
+        <div class="container mt-4 mb-3">
+          <label for="">Enter your email:</label>
+          <input type="email" class="ms-2 w-50 text-center" id="customer-email" />
+        </div>
+      </div>
       <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-outline-secondary ms-5" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Go Back</button>
-        <button type="button" class="btn btn-success me-5">Place Order</button>
+        <form action="/confirm-order" method="POST">
+          <input type="button" class="btn btn-success me-5" value="Place Order" onclick="sendEmail()" />
+        </form>
       </div>
     </div>
   </div>
 </div>
+
+<%if(cart) {%>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script>
+  function sendEmail() {
+    Email.send({
+      SecureToken: "dc96ca78-f4f8-4c27-a5eb-02f28071a3b0",
+      To: document.getElementById("customer-email").value,
+      From: "BitBurgerFoods@gmail.com",
+      Subject: `Thank you for your Order!`,
+      Body: `<%-include('../layouts/emailTemplate', { cart })%>`,
+    }).then((message) => alert("Message Successfully Sent"));
+  }
+</script>
+<% } %>
