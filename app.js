@@ -7,6 +7,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
+const passport = require("passport");
 
 const Menu = require("./models/menu");
 const User = require("./models/user");
