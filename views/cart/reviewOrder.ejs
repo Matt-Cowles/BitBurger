@@ -1,0 +1,24 @@
+<div class="container">
+  <% if(cart) { %>
+  <table class="table">
+    <% let itemCounter = 1%>
+    <tbody>
+      <% for(let item of cart.items) { %>
+      <tr class="item-row">
+        <th scope="" class="pe-3 align-middle"><%=itemCounter%></th>
+        <td class=""><img src="<%=item.image%>" alt="" class="cart-image" id="item-image" /></td>
+        <td class="w-25 text-center align-middle fs-6" id="item-name"><%=item.name%></td>
+        <td class="text-end ps-3 align-middle">
+          <span id="item-qty">x<%=item.qty%></span>
+        </td>
+        <td class="text-start ps-5 align-middle">$<%=item.price * item.qty%></td>
+      </tr>
+      <%itemCounter++ } %>
+    </tbody>
+  </table>
+  <div class="text-center mt-4 offset-3 fw-bolder">
+    <span class="offset-5">Total:</span>
+    <span class="offset-1">$<%=cart.totalPrice.toFixed(2)%></span>
+  </div>
+  <% } %>
+</div>

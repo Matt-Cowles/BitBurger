@@ -6,7 +6,11 @@
   max-width: 50px;
 }
 
-#multiply-qty {
+#item-name {
+  font-size: 10px;
+}
+
+#item-qty {
   background-color: #343b3b;
   border-radius: 50px;
   color: #fdb050;
@@ -15,6 +19,6 @@
   opacity: 0.7;
 }
 
-#multiply-qty:hover {
+#item-qty:hover {
   opacity: 1;
 }
