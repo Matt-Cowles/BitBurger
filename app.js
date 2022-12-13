@@ -6,8 +6,10 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const flash = require("connect-flash");
 
 const Menu = require("./models/menu");
+const User = require("./models/user");
 const Cart = require("./models/cart");
 
 async function main() {
@@ -23,6 +25,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
 
 const sessionOptions = {
   secret: "thisisabadsecret",
@@ -40,6 +43,8 @@ app.use(session(sessionOptions));
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 
@@ -90,12 +95,19 @@ app.get("/bitburger", async (req, res) => {
   res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart });
 });
 
+app.post("/newUser", async (req, res) => {
+  const { email, password } = req.body;
+  const user = new User({ email });
+  const registeredUser = await User.register(user, password);
+});
+
 app.put("/:id/add-cart", async (req, res) => {
   const item = await Menu.findById(req.params.id);
 
   Cart.add(item);
   req.session.cart = Cart.getCart();
 
+  req.flash("success", "Item added to your cart!");
   res.redirect("/bitburger");
 });
 
@@ -105,10 +117,12 @@ app.put("/:id/remove-cart", async (req, res) => {
   Cart.remove(item);
   req.session.cart = Cart.getCart();
 
+  req.flash("success", "Item removed from your cart!");
   res.redirect("/bitburger");
 });
 
 app.post("/confirm-order", (req, res) => {
+  req.flash("success", "Order placed! Check your email. It may take a few minutes ");
   res.redirect("/bitburger");
 });
 
