@@ -6,7 +6,7 @@
   <tbody>
     <% for(let item of cart.items) { %>
     <tr class="item-row">
-      <th scope="" class="" style="padding: 0px 10px; font-size: x-large"><strong><%=itemCounter%></strong></th>
+      <th scope="" class="" style="padding: 0px 10px; font-size: larger"><strong><%=itemCounter%></strong></th>
       <td class="" style="padding: 0px 20px"><img src="<%=item.image%>" alt="" class="" id="" style="width: 50px" /></td>
       <td class="" style="padding: 0px 20px; font-size: large"><%=item.name%></td>
       <td class="" style="padding: 0px 30px; font-size: large">
@@ -17,7 +17,7 @@
     <%itemCounter++ } %>
   </tbody>
 </table>
-<div class="" style="margin-top: 10px; padding-left: 350px; font-size: x-large">
+<div class="" style="margin: 10px 0px; padding-left: 350px; font-size: x-large">
   <span class=""><strong>Total:</strong></span>
   <span class="" style="padding: 0px 20px"><strong>$<%=cart.totalPrice.toFixed(2)%></strong></span>
 </div>
