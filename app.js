@@ -33,7 +33,7 @@ const sessionOptions = {
     // autoRemove: "interval",
     // autoRemoveInterval: 1, // In minutes. Default
   }),
-  cookie: { path: "/", httpOnly: true, maxAge: 1800000 },
+  cookie: { path: "/", httpOnly: true, maxAge: 1800000 }, // Cookie expires after 30min
 };
 
 app.use(session(sessionOptions));
@@ -105,6 +105,10 @@ app.put("/:id/remove-cart", async (req, res) => {
   Cart.remove(item);
   req.session.cart = Cart.getCart();
 
+  res.redirect("/bitburger");
+});
+
+app.post("/confirm-order", (req, res) => {
   res.redirect("/bitburger");
 });
 
