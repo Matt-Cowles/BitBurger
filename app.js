@@ -8,6 +8,9 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
+const LocalStrategy = require("passport-local");
+
+const catchAsync = require("./utils/catchAsync");
 
 const Menu = require("./models/menu");
 const User = require("./models/user");
@@ -41,6 +44,13 @@ const sessionOptions = {
 };
 
 app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.authenticate("session"));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
@@ -96,10 +106,28 @@ app.get("/bitburger", async (req, res) => {
   res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart });
 });
 
-app.post("/newUser", async (req, res) => {
-  const { email, password } = req.body;
-  const user = new User({ email });
-  const registeredUser = await User.register(user, password);
+app.post(
+  "/register",
+  catchAsync(async (req, res) => {
+    try {
+      const { username, email, password } = req.body;
+      const user = new User({ username, email });
+      const registeredUser = await User.register(user, password);
+      console.log(registeredUser);
+      req.flash("success", `Thanks for signing up ${username}`);
+      res.redirect("/bitburger");
+    } catch (e) {
+      console.log(e);
+      req.flash("error", e.message);
+      res.redirect("/bitburger");
+      console.log(e);
+    }
+  })
+);
+
+app.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/bitburger" }), (req, res) => {
+  req.flash("success", `Welcome back ${req.body.username}!`);
+  res.redirect("/bitburger");
 });
 
 app.put("/:id/add-cart", async (req, res) => {
