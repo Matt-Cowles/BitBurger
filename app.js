@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+require("dotenv").config();
 
 const catchAsync = require("./utils/catchAsync");
 
@@ -16,8 +17,10 @@ const Menu = require("./models/menu");
 const User = require("./models/user");
 const Cart = require("./models/cart");
 
+const dbUrl = process.env.DB_URL;
+// "mongodb://localhost:27017/bit-burger"
 async function main() {
-  await mongoose.connect("mongodb://localhost:27017/bit-burger");
+  await mongoose.connect(dbUrl);
 }
 main().then(() => console.log("Connected to db"));
 main().catch((err) => console.log("AN ERROR!", err));
