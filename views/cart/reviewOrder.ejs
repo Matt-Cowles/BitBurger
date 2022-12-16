@@ -11,7 +11,7 @@
         <td class="text-end ps-3 align-middle">
           <span id="item-qty">x<%=item.qty%></span>
         </td>
-        <td class="text-start ps-5 align-middle">$<%=item.price * item.qty%></td>
+        <td class="text-start align-middle" id="item-price">$<%=item.price * item.qty%></td>
       </tr>
       <%itemCounter++ } %>
     </tbody>

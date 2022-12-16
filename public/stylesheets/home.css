@@ -22,11 +22,37 @@ body {
 .leading-text {
   font-family: "Lemon", cursive;
   color: #bbbbbb;
+  font-size: 40px;
 }
 
 .name-text {
   font-family: "Chela One", cursive;
-  font-size: 148px;
+  font-size: 125px;
   color: #fdb050;
   letter-spacing: 0.05em;
+}
+
+#menu-btn {
+  font-size: 40px;
+  margin-left: 100px;
+}
+
+@media screen and (max-width: 958px) {
+  .leading-text {
+    font-family: "Lemon", cursive;
+    font-size: 25px;
+    color: #bbbbbb;
+  }
+
+  .name-text {
+    font-family: "Chela One", cursive;
+    font-size: 65px;
+    color: #fdb050;
+    letter-spacing: 0.05em;
+  }
+
+  #menu-btn {
+    font-size: 20px;
+    margin-left: 0px;
+  }
 }
