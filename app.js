@@ -54,13 +54,15 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
 });
 
 app.get("/", (req, res) => {
-  res.render("bitburger/home");
+  const user = req.user;
+  res.render("bitburger/home", { user });
 });
 
 app.get("/bitburger", async (req, res) => {
@@ -90,10 +92,6 @@ app.get("/bitburger", async (req, res) => {
     }
   });
 
-  //   const mappedItems = menuItems.map(function (item) {
-  //     console.log(item);
-  //   });
-
   if (req.session.cart) {
     req.session.cart = Cart.getCart();
   } else {
@@ -101,9 +99,15 @@ app.get("/bitburger", async (req, res) => {
     req.session.cart = null;
   }
   const cart = req.session.cart;
-  console.log(cart);
 
-  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart });
+  if (req.user) {
+    req.session.user = req.user;
+  } else {
+    req.session.user = null;
+  }
+  const user = req.session.user;
+
+  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart, user });
 });
 
 app.post(
@@ -128,6 +132,15 @@ app.post(
 app.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/bitburger" }), (req, res) => {
   req.flash("success", `Welcome back ${req.body.username}!`);
   res.redirect("/bitburger");
+});
+
+app.post("/logout", async (req, res, next) => {
+  // req.flash(`/See ya soon, ${req.user.username}`);
+  req.logout((err) => {
+    if (err) return next(err);
+    req.flash("See ya soon!");
+    res.redirect("/bitburger");
+  });
 });
 
 app.put("/:id/add-cart", async (req, res) => {
