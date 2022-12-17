@@ -39,7 +39,7 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: "mongodb://localhost:27017/bit-burger",
+    mongoUrl: dbUrl,
     // autoRemove: "interval",
     // autoRemoveInterval: 1, // In minutes. Default
   }),
