@@ -110,7 +110,9 @@ app.get("/bitburger", async (req, res) => {
   }
   const user = req.session.user;
 
-  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart, user });
+  const adminUser = process.env.ADMIN_ID;
+
+  res.render("bitburger/menu", { menuItems, burgerList, pizzaList, friesList, drinksList, dessertList, cart, user, adminUser });
 });
 
 app.post(
@@ -146,6 +148,13 @@ app.post("/logout", async (req, res, next) => {
   });
 });
 
+app.post("/new-item", async (req, res) => {
+  const item = new Menu(req.body.item);
+  item.category = item.category.toLowerCase();
+  await item.save();
+  res.redirect("/bitburger");
+});
+
 app.put("/:id/add-cart", async (req, res) => {
   const item = await Menu.findById(req.params.id);
 
@@ -168,6 +177,12 @@ app.put("/:id/remove-cart", async (req, res) => {
 
 app.post("/confirm-order", (req, res) => {
   req.flash("success", "Order placed! Check your email. It may take a few minutes ");
+  res.redirect("/bitburger");
+});
+
+app.delete("/:id/delete", async (req, res) => {
+  await Menu.findByIdAndDelete(req.params.id);
+  req.flash("success", "Successfully deleted campground!");
   res.redirect("/bitburger");
 });
 

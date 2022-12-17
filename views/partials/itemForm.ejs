@@ -1,0 +1,53 @@
+<div class="">
+    <div class="mb-3">
+        <form action="/new-item" method="POST" novalidate class="needs-validation">
+            <label class="form-label" for="title">Name</label>
+            <input class="form-control" for="text" id="title" name="item[name]" required ></input>
+            <div class="valid-feedback"> 
+                Looks Good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter a title.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="location">Catergory</label>
+            <select class="form-select form-select-md mb-3 mt-2" aria-label=".form-select-md example" name="item[category]" >
+                <option selected disabled hidden></option>
+                <option>Burger</option>
+                <option>Pizza</option>
+                <option>Fries</option>
+                <option>Drink</option>
+                <option>Dessert</option>
+            </select>
+            </div>
+            <div class="valid-feedback"> 
+                Looks Good!
+            </div>
+                <div class="invalid-feedback">
+                Please enter a location.
+            </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Image Url</label>
+            <input class="form-control" for="text" id="image" name="item[image]" required></input>
+        </div>
+        <div class="mb-5">
+            <label class="form-label" for="price">Price</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="price-label">$</span>
+                <input type="text" class="form-control" placeholder="0.00" aria-label="Username" aria-describedby="price-label" name="item[price]" required> 
+                <div class="valid-feedback"> 
+                    Looks Good!
+                </div> 
+                    <div class="invalid-feedback">
+                    Please enter a valid price.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+    </div>
+
+</div>

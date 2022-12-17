@@ -3,7 +3,22 @@
     <tbody>
       <thead>
         <tr>
-          <th scope="col" colspan="3" class="text-center pt-3 pb-3" id="item-name"><%=item.name%></th>
+          <th scope="col" colspan="3" class="text-center pt-3 pb-3" id="item-name">
+            <%=item.name%>
+
+            <% if (user && user.id == adminUser) { %>
+            <div class="dropdown">
+              <button class="btn btn-outline-dark ms-2" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">. . .</button>
+              <ul class="dropdown-menu">
+                <li>
+                  <form action="/<%=item._id%>/delete?_method=DELETE" method="POST">
+                    <button class="dropdown-item" type="submit">Delete</a>
+                  </form>
+                </li>
+              </ul>
+            </div>
+            <% } %> 
+          </th>
         </tr>
       </thead>
       <tr>

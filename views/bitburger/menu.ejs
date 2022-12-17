@@ -5,6 +5,10 @@
 
 <div class="menu-title card text-center m-auto mt-5 mb-3 fs-1 pt-5 pb-5">Our Menu</div>
 
+<% if (user && user.id == adminUser) { %>
+<button class="btn btn-outline-light offset-3 w-50 mt-5" data-bs-toggle="modal" data-bs-target="#newItem">Add a new item</button>
+<%-include('../partials/newItem')%> <% } %>
+
 <div class="container">
   <% let itemCounter = 1 %>
 
