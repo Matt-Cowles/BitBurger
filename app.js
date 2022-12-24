@@ -186,4 +186,9 @@ app.delete("/:id/delete", async (req, res) => {
   res.redirect("/bitburger");
 });
 
+app.get("*", (req, res) => {
+  req.flash("error", "You seemed to land on an unsupported page. Please try again");
+  res.redirect("/bitburger");
+});
+
 app.listen(3000, () => console.log("listening on port 3000"));
