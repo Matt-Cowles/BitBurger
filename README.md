@@ -20,4 +20,4 @@ BitBurger was built using the following technologies:
 + Passport JS for user authentication
 
 ## Contact
-If you have any questions or feedback about BitBurger, please don't hesitate to contact us at selwocm@gmail.com. We are always looking for ways to improve the user experience and welcome your input! 
+If you have any questions or feedback about BitBurger, please don't hesitate to contact me at selwocm@gmail.com. I am always looking for ways to improve the user experience and welcome your input! 
